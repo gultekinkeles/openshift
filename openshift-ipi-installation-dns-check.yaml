@@ -3,7 +3,7 @@
   hosts: localhost
   
   tasks:
-    - name: Check OpenShift API DNS record
+    - name: check dns
       ansible.builtin.shell: "dig +short {{ dns-api-openshift-cluster }}"
       register: openshift_api_result
 
