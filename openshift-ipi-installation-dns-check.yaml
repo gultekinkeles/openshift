@@ -1,6 +1,6 @@
 ---
 - name: Check DNS Records for OpenShift API and AppD
-  hosts: localhost
+  hosts: all
   
   tasks:
     - name: Check OpenShift API DNS record
