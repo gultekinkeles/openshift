@@ -1,1 +1,24 @@
+---
+- name: Check vCenter Server
+  hosts: localhost
+  connection: local
+  gather_facts: no
 
+  vars:
+    vcenter_server: "your_vcenter_server"
+    vcenter_username: "your_vcenter_username"
+    vcenter_password: "your_vcenter_password"
+
+  tasks:
+    - name: Check vCenter Server status
+      ansible.builtin.uri:
+        url: "https://{{ vcenter_server }}/rest/com/vmware/cis/session"
+        method: GET
+        user: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+      register: result
+
+    - name: Display vCenter Server status
+      ansible.builtin.debug:
+        msg: "vCenter Server status: {{ result.status }}"
