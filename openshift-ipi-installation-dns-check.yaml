@@ -1,1 +1,15 @@
+---
+- name: Check DNS Name
+  hosts: localhost
+  connection: local
+  gather_facts: no
 
+  tasks:
+    - name: Prompt user for DNS name
+      ansible.builtin.pause:
+        prompt: "Enter the DNS name to check:"
+      register: dns_name_input
+
+    - name: Debug DNS name input
+      ansible.builtin.debug:
+        var: dns_name_input.user_input
