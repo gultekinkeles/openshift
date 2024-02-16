@@ -50,7 +50,7 @@
       networking:
         clusterNetwork:
         - cidr: {{ ocp_clusternetwork }}
-          hostPrefix: 23
+          hostPrefix: 24
         machineNetwork:
         - cidr: {{ ocp_machinenetwork }}
         networkType: {{ ocp_networktype }}
