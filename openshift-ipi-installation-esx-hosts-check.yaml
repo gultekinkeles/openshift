@@ -1,1 +1,38 @@
+---
+- name: Check ESXi Hosts Access
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    esxi_hosts:
+      - esxi_host1
+      - esxi_host2
+      - esxi_host3
+    esxi_username: "your_esxi_username"
+    esxi_password: "your_esxi_password"
+
+  tasks:
+    - name: Check ESXi Hosts access
+      block:
+        - name: Check ESXi Host
+          ansible.builtin.uri:
+            url: "https://{{ item }}/mob"
+            method: GET
+            user: "{{ esxi_username }}"
+            password: "{{ esxi_password }}"
+            validate_certs: no
+          register: result
+          retries: 3
+          delay: 5
+          until: result.status == 200
+          retries_delay: 10
+          ignore_errors: yes
+          with_items: "{{ esxi_hosts }}"
+      rescue:
+        - name: Failed to check ESXi Host access
+          ansible.builtin.debug:
+            msg: "Failed to check access to ESXi Host {{ item }}. Error: {{ result }}"
+          loop_control:
+            label: "{{ item }}"
 
