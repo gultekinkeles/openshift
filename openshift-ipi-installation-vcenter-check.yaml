@@ -4,11 +4,6 @@
   connection: local
   gather_facts: no
 
-  vars:
-    vcenter_server: "your_vcenter_server"
-    vcenter_username: "your_vcenter_username"
-    vcenter_password: "your_vcenter_password"
-
   tasks:
     - name: Check vCenter Server status
       ansible.builtin.uri:
