@@ -1,6 +1,6 @@
 ---
 - name: Check vCenter Server
-  hosts: bastion
+  hosts: all
   connection: local
   gather_facts: no
 
