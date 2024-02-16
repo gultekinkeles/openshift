@@ -3,8 +3,8 @@
   hosts: localhost
   
   tasks:
-    - name: check dns
-      ansible.builtin.shell: "dig +short {{ dns-api-openshift-cluster }}"
+    - name: Check OpenShift API DNS record
+      ansible.builtin.shell: "dig +short {{ dns_api_openshift_cluster }}"
       register: openshift_api_result
 
     - name: Debug OpenShift API DNS record result
@@ -12,7 +12,7 @@
         msg: "OpenShift API DNS record: {{ openshift_api_result.stdout }}"
 
     - name: Check AppD DNS record
-      ansible.builtin.shell: "dig +short {{ dns-apps-openshift-cluster }}"
+      ansible.builtin.shell: "dig +short {{ dns_apps_openshift_cluster }}"
       register: appd_result
 
     - name: Debug AppD DNS record result
