@@ -21,6 +21,5 @@
       mv /tmp/oc /usr/local/bin 
       mv /tmp/kubectl /usr/local/bin
       register: ocp_preparation
-  - debug: var=ocp_preparation.stdout_lines
-    become: true
+  - debug: msg="{{ocp_preparation.stdout_lines}}"
       
