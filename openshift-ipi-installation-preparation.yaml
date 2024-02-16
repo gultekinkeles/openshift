@@ -15,9 +15,9 @@
       unzip download.zip
       cp certs/lin/* /etc/pki/ca-trust/source/anchors
       update-ca-trust extract    
-      curl "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-install-linux.tar.gz" | tar xz -C /tmp
+      curl -O -k "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-install-linux.tar.gz" | tar xz -C /tmp
       mv /tmp/openshift-install /usr/local/bin 
-      curl "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-client-linux.tar.gz" | tar xz -C /tmp
+      curl -O -k "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-client-linux.tar.gz" | tar xz -C /tmp
       mv /tmp/oc /usr/local/bin 
       mv /tmp/kubectl /usr/local/bin
       register: ocp_preparation
