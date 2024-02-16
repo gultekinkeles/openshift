@@ -9,7 +9,7 @@
 
     - name: Debug OpenShift API DNS record result
       ansible.builtin.debug:
-        msg: "OpenShift API DNS record: {{ openshift_api_result.stdout_lines }}"
+        msg: "OpenShift API DNS record: {{ openshift_api_result.stdout }}"
 
     - name: Check AppD DNS record
       ansible.builtin.shell: "dig +short {{ dns-apps-openshift-cluster }}"
@@ -17,4 +17,4 @@
 
     - name: Debug AppD DNS record result
       ansible.builtin.debug:
-        msg: "AppD DNS record: {{ appd_result.stdout_lines }}"
+        msg: "AppD DNS record: {{ appd_result.stdout }}"
