@@ -23,7 +23,11 @@
       cp certs/lin/* /etc/pki/ca-trust/source/anchors
       
       update-ca-trust extract
-      
+  
+      register: ocp_preparation
+  - debug: msg="{{ocp_preparation.stdout.lines}}"
+  - name: OCP Preparation 01 
+    ansible.builtin.shell: |
       wget --no-check-certificate "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-install-linux.tar.gz" 
       
       tar xvf openshift-install-linux.tar.gz -C /tmp
@@ -31,7 +35,11 @@
       cp /tmp/openshift-install /usr/local/bin -f
       
       chmod 755 /usr/local/bin/openshift-install
-      
+
+      register: ocp_preparation01
+  - debug: msg="{{ocp_preparation01.stdout.lines}}"
+  - name: OCP Preparation 02 
+    ansible.builtin.shell: |
       wget--no-check-certificate "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-client-linux.tar.gz"
       
       tar xvf openshift-client-linux.tar.gz -C /tmp
@@ -44,5 +52,5 @@
       
       chmod 755 /usr/local/bin/kubectl
       
-      register: ocp_preparation
-  - debug: msg="{{ocp_preparation.stdout.lines}}"
+      register: ocp_preparation02
+  - debug: msg="{{ocp_preparation02.stdout.lines}}"
