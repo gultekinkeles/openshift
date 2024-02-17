@@ -17,7 +17,7 @@
       cp certs/lin/* /etc/pki/ca-trust/source/anchors
       update-ca-trust extract    
       register: ocp_preparation_certs
-  - debug: msg="{{ocp_preparation.stdout_lines}}"
+  - debug: msg="{{ocp_preparation.stdout}}"
 
   - name: OCP Preparation download openshift-install and oc client
     ansible.builtin.shell: |
@@ -30,6 +30,6 @@
       mv /tmp/oc /usr/local/bin 
       mv /tmp/kubectl /usr/local/bin
       register: ocp_preparation_openshift_install_oc
-  - debug: msg="{{ocp_preparation_openshift_install_oc.stdout_lines}}"
+  - debug: msg="{{ocp_preparation_openshift_install_oc.stdout}}"
       
       
