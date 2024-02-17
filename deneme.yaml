@@ -26,7 +26,7 @@
       
       tar xvf openshift-install-linux.tar.gz -C /tmp
       
-      mv /tmp/openshift-install /usr/local/bin -f
+      cp /tmp/openshift-install /usr/local/bin -f
       
       chmod 755 /usr/local/bin/openshift-install
       
@@ -34,9 +34,9 @@
       
       tar xvf openshift-client-linux.tar.gz -C /tmp
       
-      mv /tmp/oc /usr/local/bin -f 
+      cp /tmp/oc /usr/local/bin -f 
       
-      mv /tmp/kubectl /usr/local/bin -f
+      cp /tmp/kubectl /usr/local/bin -f
       
       chmod 755 /usr/local/bin/oc
       
