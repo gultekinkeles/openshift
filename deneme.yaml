@@ -10,20 +10,12 @@
       state: latest
   - name: OCP Preparation add vcenter certs to bastion 
     ansible.builtin.shell: | 
-      ignore_errors: true
       mkdir "{{ ocp_install_folder }}"
-      warn: False
-      
       cd "{{ ocp_install_folder }}"/
-                
       curl -O -k https://"{{ vcenterurl }}"/certs/download.zip
-      
       unzip download.zip
-      
       cp certs/lin/* /etc/pki/ca-trust/source/anchors
-      
       update-ca-trust extract
-  
       register: ocp_preparation
   - debug: msg="{{ocp_preparation.stdout.lines}}"
   - name: OCP Preparation 01 
