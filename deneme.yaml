@@ -18,12 +18,12 @@
       update-ca-trust extract
       curl -O -k "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-install-linux.tar.gz" 
       tar xvf openshift-install-linux.tar.gz -C /tmp
-      mv /tmp/openshift-install /usr/local/bin
+      mv /tmp/openshift-install /usr/local/bin -f
       chmod 755 /usr/local/bin/openshift-install
       curl -O -k "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-client-linux.tar.gz"
       tar xvf openshift-client-linux.tar.gz -C /tmp
-      mv /tmp/oc /usr/local/bin 
-      mv /tmp/kubectl /usr/local/bin
+      mv /tmp/oc /usr/local/bin -f 
+      mv /tmp/kubectl /usr/local/bin -f
       chmod 755 /usr/local/bin/oc
       chmod 755 /usr/local/bin/kubectl
       register: ocp_preparation
