@@ -11,6 +11,7 @@
   - name: OCP Preparation add vcenter certs to bastion 
     ansible.builtin.shell: | 
       mkdir "{{ ocp_install_folder }}"
+      warn: False
       
       cd "{{ ocp_install_folder }}"/
                 
