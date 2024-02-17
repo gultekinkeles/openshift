@@ -9,22 +9,38 @@
         - curl
       state: latest
   - name: OCP Preparation add vcenter certs to bastion 
-    shell: | 
+    ansible.builtin.shell: | 
       mkdir "{{ ocp_install_folder }}"
+      
       cd "{{ ocp_install_folder }}"/
+                
       curl -O -k https://"{{ vcenterurl }}"/certs/download.zip
+      
       unzip download.zip
+      
       cp certs/lin/* /etc/pki/ca-trust/source/anchors
+      
       update-ca-trust extract
+      
       wget --no-check-certificate "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-install-linux.tar.gz" 
+      
       tar xvf openshift-install-linux.tar.gz -C /tmp
+      
       mv /tmp/openshift-install /usr/local/bin -f
+      
       chmod 755 /usr/local/bin/openshift-install
+      
       wget--no-check-certificate "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/{{ ocp_version }}/openshift-client-linux.tar.gz"
+      
       tar xvf openshift-client-linux.tar.gz -C /tmp
+      
       mv /tmp/oc /usr/local/bin -f 
+      
       mv /tmp/kubectl /usr/local/bin -f
+      
       chmod 755 /usr/local/bin/oc
+      
       chmod 755 /usr/local/bin/kubectl
+      
       register: ocp_preparation
   - debug: msg="{{ocp_preparation.stdout.lines}}"
