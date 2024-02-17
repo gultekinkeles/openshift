@@ -10,6 +10,7 @@
       state: latest
   - name: OCP Preparation add vcenter certs to bastion 
     ansible.builtin.shell: | 
+      ignore_errors: true
       mkdir "{{ ocp_install_folder }}"
       warn: False
       
