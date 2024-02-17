@@ -9,7 +9,7 @@
         - curl
       state: latest
   - name: OCP Preparation add vcenter certs to bastion 
-    ansible.builtin.shell: | 
+    shell: | 
       warn: false
       mkdir "{{ ocp_install_folder }}"
       cd "{{ ocp_install_folder }}"/
@@ -28,4 +28,4 @@
       chmod 755 /usr/local/bin/oc
       chmod 755 /usr/local/bin/kubectl
       register: ocp_preparation
-  - debug: msg="{{ocp_preparation.stdout}}"
+  - debug: msg="{{ocp_preparation.stdout.lines}}"
