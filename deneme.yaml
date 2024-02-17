@@ -10,7 +10,6 @@
       state: latest
   - name: OCP Preparation add vcenter certs to bastion 
     shell: | 
-      warn: false
       mkdir "{{ ocp_install_folder }}"
       cd "{{ ocp_install_folder }}"/
       curl -O -k https://"{{ vcenterurl }}"/certs/download.zip
